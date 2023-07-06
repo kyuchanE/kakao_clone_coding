@@ -3,12 +3,17 @@ package dev.kyu.clonekakao.view
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -145,6 +150,8 @@ fun MainScreenView() {
     }
 }
 
+@OptIn(ExperimentalFoundationApi::class)
+@Preview
 @Composable
 fun FriendsListScreen() {
     Box(
@@ -152,13 +159,31 @@ fun FriendsListScreen() {
            .fillMaxSize()
            .background(Color.Gray)
     ) {
-        Text(
-            text = stringResource(id = R.string.str_friends_list),
-            style = MaterialTheme.typography.bodyMedium,
-            textAlign = TextAlign.Center,
-            color = Color.White,
-            modifier = Modifier.align(Alignment.Center)
-        )
+        val sections = listOf("A", "B", "C", "D", "E", "F", "G")
+
+        LazyColumn(
+            reverseLayout = false,
+            contentPadding = PaddingValues(6.dp)
+        ) {
+//            sections.forEach { section ->
+//                stickyHeader{
+//                    Text(
+//                        "Section $section",
+//                        Modifier
+//                            .fillMaxWidth()
+//                            .background(Color.LightGray)
+//                            .padding(8.dp)
+//                    )
+//                }
+//                items(10) {
+//                    Text(text = "Item $it from the section $section")
+//                }
+//            }
+
+            items(items = sections) {item ->
+                Text(text = "Item section $item")
+            }
+        }
     }
 }
 
